@@ -5,7 +5,7 @@
     <title></title>
   </head>
   <link rel="stylesheet" href="css/main.css">
-  <body>
+  <body id='body'>
 
     <div id="sidebar">
       <h2>Note List</h2>
@@ -21,7 +21,7 @@
         <h2>Create New Note</h2>
         <form class="" id="note-creation" action="index.html" method="post">
           <input type="text" id="note-title" name="title" value="">
-          <input type="text" id="note-content" name="content" value="">
+          <input type="text" id="note-body" name="content" value="">
           <input type="submit" name="" value="Submit">
         </form>
       </div>
@@ -29,6 +29,7 @@
 
   </body>
   <script src= 'src/note.js'></script>
+  <script src= 'src/adapter.js'></script>
   <script src= 'src/user.js'></script>
   <script src= 'src/index.js'></script>
 </html>

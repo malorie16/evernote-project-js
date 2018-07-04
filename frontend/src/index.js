@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const newNote = new Note();
   //newNote creates a new Note object
 
   new Note("Note 1", "Hello World, this is my first note!");
@@ -16,25 +15,32 @@ document.addEventListener("DOMContentLoaded", function() {
 
   //allow users to enter information into form and create/display a post
   //grabs the form
-  let noteCreationForm = document.getElementById('note-creation')
+  let body = document.getElementById('body')
 
   //addEventListener to create post
-  noteCreationForm.addEventListener('submit', function(e) {
+  body.addEventListener('click', function(e) {
+
+    if (e.target.type === 'submit') {
     e.preventDefault();
 
     let noteTitle = document.getElementById('note-title');
-    let noteContent = document.getElementById('note-content');
-
-    let newerNewNote = newNote.createNote(noteTitle.value, noteContent.value)
-    // console.log(userNote);
-
-    const previewNote = document.getElementById('noteId');
+    let noteBody = document.getElementById('note-body');
+    Adapter.createNote({title: noteTitle.value, body: noteBody.value})
+      .then((note) => {
+        const newNote = new Note(note.title, note.body, note.id)
+        newNoteLoc.innerHTML += newNote.el()
+      })
+    } else if (e.target.dataset.view === 'viewNote') {
+      console.log(e.target)
+    //let previewNote = document.getElementById('view-post');
     // console.log(previewNote)
-    previewNote.addEventListener('click', function(e) {
+
+      console.log(e);
       let fullNote = document.getElementById('innerMain');
       console.log(newerNewNote)
-      fullNote.innerHTML += newerNewNote.renderFullNote();
-    })
+      fullNoteinnerHTML += newNote.renderFullNote();
+    }
+
   })
 
   // editButton.addEventListener('click', function(e) {
